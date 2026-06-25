@@ -72,8 +72,8 @@ Images are anonymized and carry no patient-identifying information, in accordanc
 
 ```bash
 # 1. Clone this repository
-git clone https://github.com/Willgnner-Santos/Endo-ICTAI-2026.git
-cd Endo-ICTAI-2026
+git clone https://github.com/[ANONYMIZED]/[ANONYMIZED].git
+cd [ANONYMIZED]
 
 # 2. Install dependencies
 pip install torch torchvision timm pandas numpy scikit-learn matplotlib seaborn statsmodels
