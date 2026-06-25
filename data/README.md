@@ -10,6 +10,9 @@ quality filtering).
 After extracting, set `IMGS_DIR` in the first cell of each notebook to point
 to the extracted folder.
 
+> Upon acceptance, the full dataset will be formally published on Hugging Face
+> with a persistent identifier and DOI.
+
 **License:** CC BY 4.0 — see `../LICENSE-DATA`
 
 ## figs.zip (12 MB)

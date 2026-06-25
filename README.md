@@ -2,8 +2,7 @@
 
 Official repository for the paper submitted to **ICTAI 2026**.
 
-> **Authors:** [ANONYMIZED for review]  
-> **Contact:** eng.willgnner@gmail.com
+> **Authors:** [ANONYMIZED for review]
 
 ---
 
@@ -56,13 +55,11 @@ The dataset comprises **1,990 gastroscopy images** from two Brazilian institutio
 
 ### Accessing the Images
 
-The image files are hosted on Hugging Face (link to be updated upon camera-ready):
+> **Note on image count:** The original collection contains 2,007 images. After cosine-similarity deduplication and quality filtering, **1,990 images** were retained and used in all experiments. The exact set is defined by the `image_name` column in the `splits/` CSV files.
 
-🔗 **[Dataset on Hugging Face — link to be updated upon camera-ready](https://huggingface.co/datasets/placeholder-endo-dataset)**
+The images are available in `data/images.zip` (tracked via Git LFS — see the `data/` folder). Upon acceptance, the full dataset will be formally published on Hugging Face with a persistent identifier and DOI.
 
-> **Note on image count:** The original collection contains 2,007 images. After cosine-similarity deduplication and quality filtering, **1,990 images** were retained and used in all experiments. The exact set is defined by the `image_name` column in the `splits/` CSV files — only images referenced there were used.
-
-After downloading, place images in a local folder and set `IMGS_DIR` in the first cell of each notebook.
+After extracting, set `IMGS_DIR` in the first cell of each notebook to point to the extracted folder.
 
 ### Data License
 
@@ -81,8 +78,8 @@ cd Endo-ICTAI-2026
 # 2. Install dependencies
 pip install torch torchvision timm pandas numpy scikit-learn matplotlib seaborn statsmodels
 
-# 3. Download images from Hugging Face (see link above)
-#    Place them in a folder, e.g.: /data/gastroscopy_images/
+# 3. Extract images
+#    Unzip data/images.zip to a local folder, e.g.: /data/gastroscopy_images/
 
 # 4. Open notebooks and set IMGS_DIR and SPLITS_DIR in the first cell
 jupyter notebook
