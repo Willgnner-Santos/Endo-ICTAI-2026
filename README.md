@@ -44,8 +44,9 @@ Endo-ICTAI-2026/
 │   ├── training/                       # Training curves and performance charts
 │   └── others/                         # Calibration, error matrix, co-prediction figures
 ├── data/
-│   ├── images.zip  (Git LFS, 512 MB)  # 2,007 images + annotations.csv
-│   └── README.md                       # Data description and license note
+│   ├── images.zip       (Git LFS, 512 MB)  # 2,007 gastroscopy images
+│   ├── annotations.zip  (16 KB)            # annotations.csv — 11 binary labels per image
+│   └── README.md                           # Data description and license note
 ├── LICENSE                             # MIT License (code)
 ├── LICENSE-DATA                        # CC BY 4.0 License (data/annotations)
 └── README.md
@@ -61,7 +62,7 @@ The dataset comprises **1,990 gastroscopy images** from two Brazilian institutio
 
 > **Note on image count:** The original collection contains 2,007 images. After cosine-similarity deduplication and quality filtering, **1,990 images** were retained and used in all experiments. The exact set is defined by the `image_name` column in the `splits/` CSV files.
 
-The images and annotation file (`annotations.csv`) are available in `data/images.zip`, tracked via Git LFS. Extract the zip and set `IMGS_DIR` in the first cell of each notebook to point to the extracted folder.
+The images are available in `data/images.zip` (Git LFS, 512 MB) and the annotation file in `data/annotations.zip` (16 KB). Extract `images.zip` and set `IMGS_DIR` in the first cell of each notebook to point to the extracted folder.
 
 Upon acceptance, the full dataset will be formally published on Hugging Face with a persistent identifier and DOI.
 
