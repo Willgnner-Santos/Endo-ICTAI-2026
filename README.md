@@ -12,7 +12,6 @@ This repository provides the full reproducibility package for our study on clini
 
 - All 10 Jupyter notebooks covering data auditing through ML-Decoder comparison
 - Exact cross-validation splits (hash-frozen, no data leakage)
-- All generated figures and Grad-CAM panels
 - Annotation CSV files (data license: CC BY 4.0)
 
 The paper evaluates five dimensions of clinical reliability: predictive performance, co-occurrence structure (CCR), artifact-induced shortcuts, cross-center generalization (LOCO), and multi-rater explainability validation.
@@ -37,12 +36,6 @@ Endo-ICTAI-2026/
 ├── splits/
 │   ├── fold_{0-4}_{train,val,test}.csv   # 5-fold CV partitions (stratified, hash-frozen)
 │   └── image_group_mapping.csv           # Image-to-group mapping for deduplication
-├── figs/
-│   ├── figs.zip                        # All generated figures (zipped)
-│   ├── eda/                            # EDA figures
-│   ├── gradcam/                        # Grad-CAM overlay panels
-│   ├── training/                       # Training curves and performance charts
-│   └── others/                         # Calibration, error matrix, co-prediction figures
 ├── data/
 │   ├── images.zip       (Git LFS, 512 MB)  # 2,007 gastroscopy images
 │   ├── annotations.zip  (16 KB)            # annotations.csv — 11 binary labels per image
