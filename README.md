@@ -42,7 +42,7 @@ Endo-ICTAI-2026/
 │   ├── fold_{0-4}_{train,val,test}.csv  # 5-fold CV partitions (stratified, hash-frozen)
 │   └── image_group_mapping.csv          # Image-to-group mapping for deduplication
 ├── LICENSE                              # MIT License (code)
-├── LICENSE-DATA                         # CC BY 4.0 License (data/annotations)
+├── LICENSE-DATA                         # CC BY 4.0 License (dataset files)
 └── README.md
 ```
 
@@ -158,7 +158,11 @@ If you use this code or the BraGED dataset, please cite:
 }
 
 @dataset{santos2026braged,
-  author    = {Santos, Willgnner Ferreira and others},
+  author    = {Santos, Willgnner Ferreira and Merhi, Paula Andraous and
+               Cardoso, Daniela Medeiros Milhomem and Santos, Paulo Victor dos and
+               Silva, Amanda Teles and Falluh Filho, Reinaldo and
+               Macedo Neto, Marcos Martins and Andrade J{\'u}nior, Sandro Batista de and
+               Martins, Marcella Scoczynski Ribeiro and Costa, Ronaldo Martins da},
   title     = {{BraGED}: {Brazilian} {Gastro-Endoscopy} {Dataset}},
   year      = {2026},
   publisher = {Zenodo},
