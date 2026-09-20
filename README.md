@@ -1,18 +1,23 @@
 # Multi-Label Classification in Brazilian Gastroscopy: Clinical Co-occurrence, Shortcuts, and Explainability
 
-Official repository for the paper submitted to **ICTAI 2026**.
+Official code repository for the paper published at **IEEE ICTAI 2026**.
 
-> **Authors:** [ANONYMIZED for review]
+**Authors:** Willgnner F. Santos · Paula A. Merhi · Daniela M. M. Cardoso · Paulo V. dos Santos · Amanda T. Silva · Reinaldo Falluh Filho · Marcos M. Macedo Neto · Sandro B. de Andrade Júnior · Marcella S. R. Martins · Ronaldo M. da Costa
+
+[![DOI Dataset](https://zenodo.org/badge/DOI/10.5281/zenodo.22864869.svg)](https://doi.org/10.5281/zenodo.22864869)
+[![HuggingFace](https://img.shields.io/badge/🤗_Dataset-BraGED-yellow)](https://huggingface.co/datasets/Willgnner-Santos/braged)
+[![License: MIT](https://img.shields.io/badge/Code-MIT-green.svg)](LICENSE)
+[![License: CC BY 4.0](https://img.shields.io/badge/Data-CC_BY_4.0-blue.svg)](LICENSE-DATA)
 
 ---
 
 ## Overview
 
-This repository provides the full reproducibility package for our study on clinically structured multi-label classification of gastroscopic findings. It includes:
+This repository provides the full reproducibility package for the study on clinically structured multi-label classification of gastroscopic findings using the **BraGED** dataset. It includes:
 
-- All 10 Jupyter notebooks covering data auditing through ML-Decoder comparison
+- 10 Jupyter notebooks covering data auditing through ML-Decoder comparison
 - Exact cross-validation splits (hash-frozen, no data leakage)
-- Annotation CSV files (data license: CC BY 4.0)
+- Annotation CSV files (CC BY 4.0)
 
 The paper evaluates five dimensions of clinical reliability: predictive performance, co-occurrence structure (CCR), artifact-induced shortcuts, cross-center generalization (LOCO), and multi-rater explainability validation.
 
@@ -23,46 +28,45 @@ The paper evaluates five dimensions of clinical reliability: predictive performa
 ```
 Endo-ICTAI-2026/
 ├── Notebooks/
-│   ├── 00_splits_audit.ipynb           # Data integrity and split validation
-│   ├── 01_image_eda.ipynb              # Exploratory data analysis
-│   ├── 02_baseline_backbones.ipynb     # Architecture comparison (ResNet-50, EfficientNet-B3, ConvNeXt-Tiny, Swin-Tiny)
-│   ├── 03_optimized_m2.ipynb           # CCR (lambda=0.6) + imbalance strategy ablations
+│   ├── 00_splits_audit.ipynb            # Data integrity and split validation
+│   ├── 01_image_eda.ipynb               # Exploratory data analysis
+│   ├── 02_baseline_backbones.ipynb      # Architecture comparison (ResNet-50, EfficientNet-B3, ConvNeXt-Tiny, Swin-Tiny)
+│   ├── 03_optimized_m2.ipynb            # CCR (lambda=0.6) + imbalance strategy ablations
 │   ├── 04_weighted_loss_and_focal.ipynb # Focal Loss / ASL / sampling ablations
-│   ├── 05_gradcam_explainability.ipynb # Grad-CAM generation and medical validation analysis
-│   ├── 06_ccr_control.ipynb            # CCR structural controls (real C vs shuffled vs uniform vs base)
-│   ├── 07_shortcut_audit.ipynb         # Ten-pair artifact-pathology shortcut audit
-│   ├── 08_leave_one_center_out.ipynb   # LOCO cross-center generalization experiment
-│   └── 09_mldecoder_baseline.ipynb     # ML-Decoder vs linear head comparison
+│   ├── 05_gradcam_explainability.ipynb  # Grad-CAM generation and medical validation
+│   ├── 06_ccr_control.ipynb             # CCR structural controls (real C vs shuffled vs uniform vs base)
+│   ├── 07_shortcut_audit.ipynb          # Ten-pair artifact-pathology shortcut audit
+│   ├── 08_leave_one_center_out.ipynb    # LOCO cross-center generalization experiment
+│   └── 09_mldecoder_baseline.ipynb      # ML-Decoder vs linear head comparison
 ├── splits/
-│   ├── fold_{0-4}_{train,val,test}.csv   # 5-fold CV partitions (stratified, hash-frozen)
-│   └── image_group_mapping.csv           # Image-to-group mapping for deduplication
-├── data/
-│   ├── images.zip       (Git LFS, 512 MB)  # 2,007 gastroscopy images
-│   ├── annotations.zip  (16 KB)            # annotations.csv — 11 binary labels per image
-│   └── README.md                           # Data description and license note
-├── LICENSE                             # MIT License (code)
-├── LICENSE-DATA                        # CC BY 4.0 License (data/annotations)
+│   ├── fold_{0-4}_{train,val,test}.csv  # 5-fold CV partitions (stratified, hash-frozen)
+│   └── image_group_mapping.csv          # Image-to-group mapping for deduplication
+├── LICENSE                              # MIT License (code)
+├── LICENSE-DATA                         # CC BY 4.0 License (data/annotations)
 └── README.md
 ```
 
 ---
 
-## Dataset
+## Dataset — BraGED
 
-The dataset comprises **1,990 gastroscopy images** from two Brazilian institutions (Center A: 720 images; Center B: 1,270 images), annotated across **11 binary labels** (7 clinical findings + 2 artifacts + 2 general indicators). Imbalance ratios range from 1.0 to 496:1.
+The **BraGED (Brazilian Gastro-Endoscopy Dataset)** comprises **1,990 gastroscopy images** from two Brazilian institutions (Center 1 / HGG: 720 images; Center 2 / IAD: 1,270 images), annotated across **11 binary labels** (5 clinical findings + 2 artifacts + 2 general indicators + 2 rare findings). Imbalance ratios range from 1.0 to 496:1.
 
-### Accessing the Images
+### Download
 
-> **Note on image count:** The original collection contains 2,007 images. After cosine-similarity deduplication and quality filtering, **1,990 images** were retained and used in all experiments. The exact set is defined by the `image_name` column in the `splits/` CSV files.
+| Platform | Link |
+|---|---|
+| **Zenodo** (primary, DOI-citable) | [https://doi.org/10.5281/zenodo.22864869](https://doi.org/10.5281/zenodo.22864869) |
+| **HuggingFace** | [Willgnner-Santos/braged](https://huggingface.co/datasets/Willgnner-Santos/braged) |
 
-The images are available in `data/images.zip` (Git LFS, 512 MB) and the annotation file in `data/annotations.zip` (16 KB). Extract `images.zip` and set `IMGS_DIR` in the first cell of each notebook to point to the extracted folder.
+> **Note:** The dataset is currently restricted pending paper publication. It will be made fully public upon publication of the associated paper. To request early access, contact: eng.willgnner@gmail.com
 
-Upon acceptance, the full dataset will be formally published on Hugging Face with a persistent identifier and DOI.
+After downloading, extract the images and set `IMGS_DIR` in the first cell of each notebook to point to the extracted folder.
 
 ### Data License
 
-Annotation files (splits CSVs, labels) are released under **CC BY 4.0** — see `LICENSE-DATA`.  
-Images are anonymized and carry no patient-identifying information, in accordance with Ethics Committee approval (Plataforma Brasil, CNS 466/2012).
+Images and annotation files are released under **CC BY 4.0** — see `LICENSE-DATA`.
+Images are anonymized and carry no patient-identifying information (Ethics approval: Plataforma Brasil, CAAE 59898122.7.0000.0035; CNS 466/2012).
 
 ---
 
@@ -70,23 +74,23 @@ Images are anonymized and carry no patient-identifying information, in accordanc
 
 ```bash
 # 1. Clone this repository
-git clone https://github.com/[ANONYMIZED]/[ANONYMIZED].git
-cd [ANONYMIZED]
+git clone https://github.com/Willgnner-Santos/Endo-ICTAI-2026.git
+cd Endo-ICTAI-2026
 
 # 2. Install dependencies
 pip install torch torchvision timm pandas numpy scikit-learn matplotlib seaborn statsmodels
 
-# 3. Extract images
-#    Unzip data/images.zip to a local folder, e.g.: /data/gastroscopy_images/
+# 3. Download BraGED images from Zenodo or HuggingFace
+#    Extract to a local folder and set IMGS_DIR in the first notebook cell
 
-# 4. Open notebooks and set IMGS_DIR and SPLITS_DIR in the first cell
+# 4. Run notebooks in order
 jupyter notebook
 ```
 
 **Recommended execution order:**
 
 | Step | Notebook | Purpose |
-|------|----------|---------|
+|---|---|---|
 | 1 | 00, 01 | Data validation and EDA |
 | 2 | 02, 04 | Architecture and loss ablations |
 | 3 | 03 | CCR training — produces checkpoints used downstream |
@@ -100,22 +104,31 @@ jupyter notebook
 | Experiment | Key Finding |
 |---|---|
 | Architecture comparison | Swin-Tiny: macro-F1 0.605 ± 0.031; PR-AUC 0.705 ± 0.029 |
-| CCR (lambda=0.6) | Polyp F1: 0.529 → 0.657 (+12.8 pp; Cohen's d=1.08) |
-| CCR structural controls | real C > shuffled > uniform > base confirms clinical structure contribution |
-| Shortcut audit | 2 flagged pairs: SALIVA+EROSION (+10.5 pp FN), LIGHT+ERYTHEMA (+11.3 pp FN) |
-| LOCO | A→B macro-F1=0.250; B→A macro-F1=0.186 (vs 0.663/0.506 in-distribution) |
-| ML-Decoder vs linear | Delta=−0.045; CI95[−0.079, −0.008] — linear head wins at this data scale |
-| Multi-rater explainability | Fleiss' kappa=0.49; 81.3% of Grad-CAM maps clinically acceptable (3 endoscopists, 64 ratings) |
+| CCR (λ=0.6) | Polyp F1: 0.529 → 0.657 (+12.8 pp; Cohen's d=1.08) |
+| CCR structural controls | real C > shuffled > uniform > base — confirms clinical structure contribution |
+| Shortcut audit | 2 flagged pairs: SALIVA+EROSION (+10.5 pp FN excess), LIGHT+ERYTHEMA (+11.3 pp FN excess) |
+| LOCO | Center 1→2: macro-F1=0.250; Center 2→1: macro-F1=0.186 (vs 0.605 in-distribution) |
+| ML-Decoder vs linear | Δ=−0.036 — linear head outperforms ML-Decoder at this data scale |
+| Multi-rater explainability | Fleiss' κ=0.49; 81.3% of Grad-CAM maps clinically acceptable (3 endoscopists, 64 ratings) |
 
 ---
 
-## Requirements
+## Authors & Affiliations
 
-- Python 3.10+
-- PyTorch 2.1+ and Torchvision
-- timm 1.0
-- pandas, numpy, scikit-learn, matplotlib, seaborn
-- statsmodels (bootstrap intervals)
+| Author | Affiliation |
+|---|---|
+| Willgnner Ferreira Santos | Institute of Informatics (INF), Federal University of Goiás (UFG); SENAI Fatesg – NIAA, Goiânia, Brazil |
+| Paula Andraous Merhi | Alberto Rassi State Hospital (HGG), Goiânia, Brazil |
+| Daniela Medeiros Milhomem Cardoso | Alberto Rassi State Hospital (HGG), Goiânia, Brazil |
+| Paulo Victor dos Santos | IIG, Federal University of Goiás (UFG); SENAI Fatesg – NIAA, Goiânia, Brazil |
+| Amanda Teles Silva | Alberto Rassi State Hospital (HGG), Goiânia, Brazil |
+| Reinaldo Falluh Filho | Alberto Rassi State Hospital (HGG), Goiânia, Brazil |
+| Marcos Martins Macedo Neto | Alberto Rassi State Hospital (HGG), Goiânia, Brazil |
+| Sandro Batista de Andrade Júnior | Goiás Emergency Hospital (HUGO), Goiânia, Brazil |
+| Marcella Scoczynski Ribeiro Martins | Federal University of Technology – Paraná (UTFPR), Curitiba, Brazil |
+| Ronaldo Martins da Costa | Institute of Informatics (INF), Federal University of Goiás (UFG), Goiânia, Brazil |
+
+Corresponding author: eng.willgnner@gmail.com
 
 ---
 
@@ -124,10 +137,32 @@ jupyter notebook
 | Component | License |
 |---|---|
 | Code (notebooks, scripts) | [MIT](LICENSE) |
-| Data (annotations, splits CSV files) | [CC BY 4.0](LICENSE-DATA) |
+| Data (images, annotations, splits CSVs) | [CC BY 4.0](LICENSE-DATA) |
 
 ---
 
 ## Citation
 
-> Paper under review — citation to be added upon acceptance.
+If you use this code or the BraGED dataset, please cite:
+
+```bibtex
+@inproceedings{santos2026multilabel,
+  author    = {Santos, Willgnner Ferreira and Merhi, Paula Andraous and
+               Cardoso, Daniela Medeiros Milhomem and Santos, Paulo Victor dos and
+               Silva, Amanda Teles and Falluh Filho, Reinaldo and
+               Macedo Neto, Marcos Martins and Andrade J{\'u}nior, Sandro Batista de and
+               Martins, Marcella Scoczynski Ribeiro and Costa, Ronaldo Martins da},
+  title     = {Multi-Label Classification in {Brazilian} Gastroscopy: Clinical Co-occurrence, Shortcuts, and Explainability},
+  booktitle = {Proceedings of the IEEE International Conference on Tools with Artificial Intelligence (ICTAI)},
+  year      = {2026}
+}
+
+@dataset{santos2026braged,
+  author    = {Santos, Willgnner Ferreira and others},
+  title     = {{BraGED}: {Brazilian} {Gastro-Endoscopy} {Dataset}},
+  year      = {2026},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.22864869},
+  url       = {https://doi.org/10.5281/zenodo.22864869}
+}
+```
